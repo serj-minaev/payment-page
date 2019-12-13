@@ -1,3 +1,7 @@
+function createPaymentIntent() {
+
+}
+
 function getCartData(data) {
     if(!data || !data.items)
         return;
@@ -102,12 +106,19 @@ function getCartData(data) {
     if(!!totalPriceElem2) {
         totalPriceElem2.textContent = totalPriceText;
     }
+    
+    createPaymentIntent(totalPrice);
 }
 
 function constructCartElement(attrs) {
+    var moreThanOne = !!attrs["quantity"] && attrs["quantity"] > 1;
     var elem = div("product");
     var desc = div("desc", elem);
-    var im = img(!!attrs["imageURL"] ? attrs["imageURL"] : "img/no-image.png", "product-thumbnail-image", desc);
+    var imgContainer = div("product-image-container", desc);
+    var quantityLabel = moreThanOne ? div("quantity-label", imgContainer) : null;
+    if(!!quantityLabel)
+        text(attrs["quantity"].toString(), quantityLabel);
+    var imgElem = img(!!attrs["imageURL"] ? attrs["imageURL"] : "img/no-image.png", "product-thumbnail-image", imgContainer);
     var sp = span("", desc);
     var header = h(2, attrs["name"] || "Unbenanntes Element", "", sp);
     var pe = p("", sp);
@@ -140,7 +151,7 @@ function constructCartElement(attrs) {
         br(pe);
     }
 
-    if(!!attrs["quantity"] && attrs["quantity"] > 1 && !!attrs["ppu"]) {
+    if(moreThanOne && !!attrs["ppu"]) {
         text("Stückpreis: " + formatMoney(attrs["ppu"] * 100.0), pe);
         br(pe);
     }
