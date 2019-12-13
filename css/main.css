@@ -26,7 +26,6 @@ html{
 }
 body{
     background-color: var(--main-bg-color);
-
 }
 a{
     text-decoration: none;
@@ -113,9 +112,14 @@ summary span {
     align-items: center;
 }
 
-.top-summ{
+.top-summ {
     font-weight: 700;
 }
+
+.variant-price {
+    align-self: normal;
+}
+
 .summary-inner{
     /*height: 100%;*/
     padding: 20px;
