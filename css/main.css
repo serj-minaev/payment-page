@@ -15,6 +15,8 @@ html{
     --second-text-color: #8D8D8D;
     --border-light: #F1F1F1;
     --border-dark: #C5C5C5;
+    --accent: #BBDEFB;
+    --accent2: #64B5F6;
 
     --shadow1: 0px 1px 4px rgba(0, 0, 0, 0.25);
     --shadow2:  0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -202,13 +204,13 @@ details[open] summary span:after{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--main-bg-color);
+    background-color: var(--accent);
     box-shadow: var(--shadow1);
     /*cursor: pointer;*/
 }
 
 .next-step:hover{
-    background-color: var(--third-bg-color);
+    background-color: var(--accent2);
     transition: .2s ease-in;
 }
 .category-icon{
@@ -232,6 +234,10 @@ details[open] summary span:after{
 .contact-info div{
     display: flex;
 }
+/*.contact-info input,*/
+/*.contact-info input + div{*/
+/*    width: 100%;*/
+/*}*/
 .badge-img{
     max-width: 100%;
 }
@@ -301,7 +307,14 @@ label[for=news]{
 .mm{
     padding: 15px 0;
 }
+.icons{
+    max-height: 4.2rem;
+    margin-left: 8px;
+}
 
+.payout img{
+    padding: 15px 0;
+}
 
 
 
@@ -322,10 +335,10 @@ label[for=news]{
 
 }
 .jetzt span{
-    background-color: #2196F3;
+    background-color: var(--accent);
     border-radius: 3px;
-    border: 1px solid #1976D2;
-    color: var(--main-bg-color);
+    border: 1px solid var(--accent2);
+    color: var(--main-text-color);
     font-size: 1.8rem;
     padding: 1.4rem;
     max-width: 240px;
@@ -334,7 +347,7 @@ label[for=news]{
     cursor: pointer;
 }
 .jetzt span:hover{
-    background-color: #1976D2;
+    background-color: var(--accent2);
     box-shadow: var(--shadow2);
 }
 
@@ -532,10 +545,10 @@ footer .container{
         max-width: 100%;
     }
     .accordion > label {
-        flex-direction: column;
+        /*flex-direction: column;*/
         line-height: initial;
     }
-    .accordion > label:before {
+    .accordion > label:after {
         top: initial;
     }
 }
