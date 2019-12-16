@@ -26,7 +26,6 @@ html{
 }
 body{
     background-color: var(--main-bg-color);
-
 }
 a{
     text-decoration: none;
@@ -113,9 +112,14 @@ summary span {
     align-items: center;
 }
 
-.top-summ{
+.top-summ {
     font-weight: 700;
 }
+
+.variant-price {
+    align-self: normal;
+}
+
 .summary-inner{
     /*height: 100%;*/
     padding: 20px;
@@ -191,6 +195,24 @@ details[open] summary span:after{
     border-radius: 3px;
     box-shadow: var(--shadow1);
     margin: 0 15px 0 0;
+}
+.product-image-container{
+    position: relative;
+    display: inline-block;
+    max-height: 73px;
+}
+.quantity-label{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    background: #E6262E;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 85px;
+    top: 50px;
 }
 .seporator{
     width: 100%;
