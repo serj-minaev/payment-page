@@ -544,11 +544,21 @@ footer .container{
         flex-direction: column;
         max-width: 100%;
     }
+    .fr3 div{
+        width: 100%;
+    }
     .accordion > label {
         /*flex-direction: column;*/
         line-height: initial;
     }
     .accordion > label:after {
         top: initial;
+    }
+    .trouble-inputs{
+        width: 100%;
+    }
+    .trouble-inputs2{
+        width: 100%;
+        margin: 5px 0 0 0;
     }
 }

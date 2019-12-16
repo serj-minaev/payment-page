@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Card</title>
+    <title>    Zahlung - Plexiglas-dekoshop - Bezahlung</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css">
@@ -24,6 +24,7 @@
 
 </nav>
 <main>
+    <!-- Goods-->
     <div class="card">
         <details open class="goods">
             <summary>
@@ -126,7 +127,8 @@
 
         </details>
     </div>
-
+    <!--/ Goods-->
+    <!--Delivery-->
     <div class="card">
         <details open class="delivery">
             <summary>
@@ -192,12 +194,12 @@
 
         </details>
     </div>
-
+    <!--/ Delivery-->
+    <!--Payment-->
     <div class="card">
         <details open class="payment">
             <summary><span>
             <a name="card"></a>
-<!--                <img class="category-icon" src="img/credit-card.png" alt="">-->
                 <p class="category-text">Zahlung</p>
         </span>
                 <div class="top-summ">124 &#8364;</div>
@@ -216,16 +218,15 @@
                                 <img class="icons" src="img/002-visa.svg" alt="visa">
                                 <img class="icons" src="img/003-discover.svg" alt="discover">
                                 <img class="icons" src="img/004-american-express.svg" alt="american express">
-<!--                                <img src="img/cards.png" alt="" class="cards">-->
                             </label>
                             <section>
                                 <div class="contact-info fr3">
 
-                                    <input type="text" placeholder="Kartennummer" >
-                                    <input type="text" placeholder="Name des Karteninhabers" >
+                                    <input class="trouble-inputs" type="text" placeholder="Kartennummer" >
+                                    <input class="trouble-inputs" type="text" placeholder="Name des Karteninhabers" >
                                     <div>
-                                        <input type="text" placeholder="Gültig bis (MM/JJ)" class="one-two">
-                                        <input type="text" placeholder="Sicherheitscode" class="one-two">
+                                        <input type="text" class="trouble-inputs2" placeholder="Gültig bis (MM/JJ)" class="one-two">
+                                        <input type="text" class="trouble-inputs2" placeholder="Sicherheitscode" class="one-two">
                                     </div>
                                 </div>
                             </section>
@@ -235,7 +236,6 @@
                             <input id="toggle2" type="radio" class="accordion-toggle" name="toggle" />
                             <label for="toggle2">
                                 <img class="icons" src="img/005-paypal.svg" alt="paypal" >
-<!--                                <img src="img/paypal.png" alt="" class="cards">-->
                             </label>
                             <section class="payout">
                                 <img src="img/offsite.svg" alt="">
@@ -330,6 +330,7 @@
 
         </details>
     </div>
+    <!--/ Payment-->
 </main>
 
 
