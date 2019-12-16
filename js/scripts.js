@@ -1,5 +1,18 @@
-function createPaymentIntent() {
+var clientSecret = '';
 
+function createPaymentIntent(totalPrice, cart) {
+    if(!cart)
+        return;
+    console.log(cart);
+    
+    jQuery.post('/stripe/create_payment_intent.php', {
+                    "cart": cart
+                }).done(function(response) {
+                    console.log("response: " + response.toString());
+                    var jsonData = JSON.parse(response);
+                    if(!!jsonData && !!jsonData["paymentIntent"] && !!jsonData["paymentIntent"]["client_secret"])
+                        clientSecret = jsonData["paymentIntent"]["client_secret"];
+                });
 }
 
 function getCartData(data) {
@@ -107,7 +120,7 @@ function getCartData(data) {
         totalPriceElem2.textContent = totalPriceText;
     }
     
-    createPaymentIntent(totalPrice);
+    createPaymentIntent(totalPrice, data);
 }
 
 function constructCartElement(attrs) {
@@ -226,6 +239,69 @@ function getOptionByName(optionsWithValues, name) {
             return optionsWithValues[i].value;
     }
     return null;
+}
+
+function initStripe() {
+    if(!!Stripe) {
+        var stripe = Stripe('pk_test_616ldW8O2VRMHti9f475UOSA00tO2gbmmj');
+        var elements = stripe.elements();
+
+        var style = {
+            base: {
+                color: "#32325d",
+            }
+        };
+
+        var card = elements.create("card", { style: style });
+        card.mount("#payment-selection");
+        card.addEventListener('change', function(event) {
+            var displayError = document.getElementById('card-errors');
+            if (event.error) {
+                displayError.textContent = event.error.message;
+            } else {
+                displayError.textContent = '';
+            }
+        });
+        
+        var errLbl = document.querySelector('#payment-error-message');
+        var submitButton = document.getElementById('payment-button');
+        submitButton.addEventListener('click', function(ev) {
+            jQuery.post('/stripe/save_contact_data.php', {
+                
+            }).then(function(contactDataSaveResult) {
+                contactDataSaveResult.json().then(function(contactDataSaveResultJSON) {
+                    if(!!contactDataSaveResultJSON.success) {
+                        stripe.confirmCardPayment(clientSecret, {
+                            payment_method: {card: card}
+                        }).then(function(result) {
+                            if(result.error) {
+                                console.log(result.error.message);
+                                if(!!errLbl) {
+                                    errLbl.innerText = result.error.message;
+                                    errLbl.style.display = '';
+                                }
+                            } else {
+                                if(result.paymentIntent.status === 'succeeded') {
+                                    console.log("Payment succeeded");
+                                    // The payment has been processed
+                                }
+                            }
+                        });
+                    } else {
+                        if(!!errLbl) {
+                            errLbl.innerText = 'Ein serverseitiger Fehler ist aufgetreten.';
+                            errLbl.style.display = '';
+                        }
+                    }
+                });
+            }).catch(function() {
+                if(!!errLbl) {
+                    errLbl.innerText = 'Ein serverseitiger Fehler ist aufgetreten.';
+                    errLbl.style.display = '';
+                }
+            });
+        });
+    }
 }
 
 function formatMoney(amount) {

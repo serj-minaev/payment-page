@@ -497,6 +497,12 @@ footer .container{
     text-align: center;
 }
 
+#payment-error-message {
+    color: #d00;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
 
 .width{
     grid-template-columns: 1fr;

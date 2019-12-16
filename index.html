@@ -9,7 +9,9 @@
     <!--Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Poppins:700|Roboto:400,700&display=swap" rel="stylesheet">
     <!-- Scripts -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
+    <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
 <nav>
@@ -145,19 +147,19 @@
                 <div class="contact-delivery">
                     <div class="contact-info">
                         <div>
-                            <input type="text" placeholder="Vorname" class="one-two">
-                            <input type="text" placeholder="Nachname" class="one-two">
+                            <input type="text" placeholder="Vorname" class="one-two" id="contact-data-first-name">
+                            <input type="text" placeholder="Nachname" class="one-two" id="contact-data-last-name">
                         </div>
 
-                        <input type="text" placeholder="Firma (optional)" >
-                        <input type="text" placeholder="Adresse" >
-                        <input type="text" placeholder="Wohnung, Zimmer, usw. (optional)" >
+                        <input type="text" placeholder="Firma (optional)" id="contact-data-company">
+                        <input type="text" placeholder="Adresse" id="contact-data-address">
+                        <input type="text" placeholder="Wohnung, Zimmer, usw. (optional)" id="contact-data-apartment">
                         <div>
-                            <input type="text" placeholder="Postleitzahl" class="one-two">
-                            <input type="text" placeholder="Stadt" class="one-two">
+                            <input type="text" placeholder="Postleitzahl" class="one-two" id="contact-data-zip">
+                            <input type="text" placeholder="Stadt" class="one-two" id="contact-data-city">
                         </div>
 
-                        <select name="Region" id="" >
+                        <select name="Region" id="contact-data-country">
                             <option value="" hidden>Land / Region</option>
                             <option value="Deutschland">Deutschland</option>
                         </select>
@@ -211,55 +213,63 @@
 
                     <div>
                         <h3>Select payment method</h3><br>
-                        <div class="accordion">
-                            <input id="toggle1" type="radio" class="accordion-toggle" name="toggle" />
-                            <label for="toggle1">
-                                <p class="d-none">Kreditkarte</p>
-<!--                                sad-->
-                                <img class="icons" src="img/001-mastercard.svg" alt="mastercard">
-                                <img class="icons" src="img/002-visa.svg" alt="visa">
-                                <img class="icons" src="img/003-discover.svg" alt="discover">
-                                <img class="icons" src="img/004-american-express.svg" alt="american express">
-<!--                                <img src="img/cards.png" alt="" class="cards">-->
-                            </label>
-                            <section>
-                                <div class="contact-info fr3">
 
-                                    <input type="text" placeholder="Kartennummer" >
-                                    <input type="text" placeholder="Name des Karteninhabers" >
-                                    <div>
-                                        <input type="text" placeholder="Gültig bis (MM/JJ)" class="one-two">
-                                        <input type="text" placeholder="Sicherheitscode" class="one-two">
+                        <div id="payment-selection">
+                            <div class="accordion">
+                                <input id="toggle1" type="radio" class="accordion-toggle" name="toggle" />
+                                <label for="toggle1">
+                                    <p class="d-none">Kreditkarte</p>
+    <!--                                sad-->
+                                    <img class="icons" src="img/001-mastercard.svg" alt="mastercard">
+                                    <img class="icons" src="img/002-visa.svg" alt="visa">
+                                    <img class="icons" src="img/003-discover.svg" alt="discover">
+                                    <img class="icons" src="img/004-american-express.svg" alt="american express">
+    <!--                                <img src="img/cards.png" alt="" class="cards">-->
+                                </label>
+                                <section>
+                                    <div class="contact-info fr3">
+
+                                        <input type="text" placeholder="Kartennummer" >
+                                        <input type="text" placeholder="Name des Karteninhabers" >
+                                        <div>
+                                            <input type="text" placeholder="Gültig bis (MM/JJ)" class="one-two">
+                                            <input type="text" placeholder="Sicherheitscode" class="one-two">
+                                        </div>
                                     </div>
-                                </div>
-                            </section>
+                                </section>
+                            </div>
+
+                            <div class="accordion">
+                                <input id="toggle2" type="radio" class="accordion-toggle" name="toggle" />
+                                <label for="toggle2">
+                                    <img class="icons" src="img/005-paypal.svg" alt="paypal" >
+    <!--                                <img src="img/paypal.png" alt="" class="cards">-->
+                                </label>
+                                <section class="payout">
+                                    <img src="img/offsite.svg" alt="">
+                                    <p>Nachdem Sie “Kaufen” geklickt haben, werden Sie zu PayPal weitergeleitet, um Ihren Einkauf sicher abzuschließen.</p>
+                                </section>
+                            </div>
+
+                            <div class="accordion">
+                                <input id="toggle3" type="radio" class="accordion-toggle" name="toggle" />
+                                <label  for="toggle3" >
+
+                                    <p class="d-none">Sofortüberweisung</p>
+                                    <img src="img/sofo.png" alt="" class="cards">
+                                </label>
+                                <section class="payout">
+                                    <img src="img/offsite.svg" alt="">
+                                    <p>Nachdem Sie “Kaufen” geklickt haben, werden Sie zu Sofortüberweisung weitergeleitet, um Ihren Einkauf sicher abzuschließen.</p>
+                                </section>
+                            </div>
                         </div>
 
-                        <div class="accordion">
-                            <input id="toggle2" type="radio" class="accordion-toggle" name="toggle" />
-                            <label for="toggle2">
-                                <img class="icons" src="img/005-paypal.svg" alt="paypal" >
-<!--                                <img src="img/paypal.png" alt="" class="cards">-->
-                            </label>
-                            <section class="payout">
-                                <img src="img/offsite.svg" alt="">
-                                <p>Nachdem Sie “Kaufen” geklickt haben, werden Sie zu PayPal weitergeleitet, um Ihren Einkauf sicher abzuschließen.</p>
-                            </section>
-                        </div>
-
-                        <div class="accordion">
-                            <input id="toggle3" type="radio" class="accordion-toggle" name="toggle" />
-                            <label  for="toggle3" >
-
-                                <p class="d-none">Sofortüberweisung</p>
-                                <img src="img/sofo.png" alt="" class="cards">
-                            </label>
-                            <section class="payout">
-                                <img src="img/offsite.svg" alt="">
-                                <p>Nachdem Sie “Kaufen” geklickt haben, werden Sie zu Sofortüberweisung weitergeleitet, um Ihren Einkauf sicher abzuschließen.</p>
-                            </section>
+                        <div id="payment-error-message" style="display: none;">
+                            Ein Fehler ist aufgetreten.
                         </div>
                     </div>
+                    
                     <div>
                         <h3 class="mm">Rechnungsadresse</h3>
                         <p>Wählen Sie die mit Ihrer Karte oder Zahlungsmethode verknüpfte Adresse aus.</p>
@@ -322,7 +332,7 @@
                 </div>
 
 
-                <div class="jetzt">
+                <div class="jetzt" id="payment-button">
 
                     <span> Jetzt bezahlen</span>
 
@@ -336,6 +346,9 @@
     </div>
 </main>
 
+<script type="text/javascript">
+// initStripe();
+</script>
 
 <footer>
     <div class="container">
