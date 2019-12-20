@@ -338,7 +338,9 @@ label[for=news]{
     padding: 15px 0;
 }
 
-
+#telnum{
+    width: 98%;
+}
 
 
 
@@ -472,7 +474,9 @@ footer .container{
     transition: .3s all;
     overflow: hidden;
 }
-
+.accordion > .accordion-toggle:checked ~ label{
+    background: var(--accent);
+}
 .accordion > .accordion-toggle:checked ~ label:after{
     transform: rotate(180deg);
 }
@@ -487,6 +491,7 @@ footer .container{
     font-size: 12px;
     line-height: 1.5;
 }
+
 
 .payout{
     display: flex;
@@ -567,14 +572,12 @@ footer .container{
         flex-direction: column;
         align-items: center;
     }
-    .payment-info div{
+    .payment-info .payment-method .rechnungsadresse{
         display: flex;
         flex-direction: column;
         max-width: 100%;
     }
-    .fr3 div{
-        width: 100%;
-    }
+
     .accordion > label {
         /*flex-direction: column;*/
         line-height: initial;
@@ -588,5 +591,11 @@ footer .container{
     .trouble-inputs2{
         width: 100%;
         margin: 5px 0 0 0;
+    }
+    .margin-xs{
+        padding: 15px 0;
+    }
+    .variant-price{
+        text-align: center;
     }
 }

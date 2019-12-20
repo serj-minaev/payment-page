@@ -30,7 +30,7 @@
     <div class="card">
         <details open class="goods">
             <summary>
-                <span>
+                <span class="section-icon">
 <!--                    <img class="category-icon" src="img/basket.png" alt="">-->
                         <p class="category-text">Bestellzusammenfassung anzeigen</p>
                 </span>
@@ -211,7 +211,7 @@
             <div class="summary-inner">
                 <div class="payment-info">
 
-                    <div>
+                    <div class="payment-method">
                         <h3>Select payment method</h3><br>
 
                         <div id="payment-selection">
@@ -270,12 +270,12 @@
                         </div>
                     </div>
                     
-                    <div>
-                        <h3 class="mm">Rechnungsadresse</h3>
+                    <div class="rechnungsadresse">
+                        <h3 class="margin-xs">Rechnungsadresse</h3>
                         <p>Wählen Sie die mit Ihrer Karte oder Zahlungsmethode verknüpfte Adresse aus.</p>
 
                         <div class="accordion">
-                            <input id="toggle4" type="radio" class="accordion-toggle" name="toggle" />
+                            <input id="toggle4" type="radio" class="accordion-toggle" name="toggle2" />
                             <label for="toggle4">
                                Mit der Lieferadresse identisch
                             </label>
@@ -283,7 +283,7 @@
                         </div>
 
                         <div class="accordion">
-                            <input id="toggle5" type="radio" class="accordion-toggle" name="toggle" />
+                            <input id="toggle5" type="radio" class="accordion-toggle" name="toggle2" />
                             <label for="toggle5">
                               Eine andere Rechnungsadresse verwenden
                             </label>
@@ -314,12 +314,12 @@
                         </div>
                         <h3 class="mm">Für später speichern</h3>
                         <div class="accordion">
-                            <input id="toggle6" type="radio" class="accordion-toggle" name="toggle" />
+                            <input id="toggle6" type="radio" class="accordion-toggle" name="toggle3" />
                             <label for="toggle6">
                                 Meine Daten zum Bezahlen speichern
                             </label>
                             <section>
-                                <input type="tel" placeholder="Mobile Rufnummer">
+                                <input id="telnum" type="tel" placeholder="Mobile Rufnummer">
                                 <p>
                                     Wenn Sie das nächste Mal hier oder in anderen Shops von Shopify auschecken, erhalten Sie per Textnachricht einen Code und können sicher mit Shopify Pay einkaufen.
                                 </p>
