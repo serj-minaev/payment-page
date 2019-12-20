@@ -598,4 +598,7 @@ footer .container{
     .variant-price{
         text-align: center;
     }
+    .info ul, .navigation ul, .about ul {
+        text-align: center;
+    }
 }
